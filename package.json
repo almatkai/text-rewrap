@@ -4,8 +4,9 @@
   "title": "Text Rewrap",
   "version": "0.1.0",
   "description": "Rewraps Text at a given width",
-  "icon": "text-rewrap.png",
+  "icon": "assets/text-rewrap.png",
   "author": "almatkai",
+  "categories": ["Developer Tools"],
   "platforms": [
     "macOS",
     "Windows"
@@ -34,7 +35,7 @@
       "name": "text-rewrap-form",
       "title": "Text Rewrap from Form",
       "description": "Rewraps Text provided in the form at the chosen width",
-      "icon": "text-rewrap-form.png",
+      "icon": "assets/text-rewrap-form.png",
       "mode": "view",
       "platforms": [
         "macOS",
@@ -45,7 +46,7 @@
       "name": "text-rewrap-clipboard",
       "title": "Text Rewrap from Clipboard",
       "description": "Rewraps text from clipboard at the chosen width",
-      "icon": "text-rewrap-clipboard.png",
+      "icon": "assets/text-rewrap-clipboard.png",
       "mode": "view",
       "platforms": [
         "macOS",
@@ -56,7 +57,7 @@
       "name": "text-rewrap-selection",
       "title": "Text Rewrap from Selection",
       "description": "Rewraps text from currently highlighted selection at the chosen width",
-      "icon": "text-rewrap-clipboard.png",
+      "icon": "assets/text-rewrap-clipboard.png",
       "mode": "view",
       "platforms": [
         "macOS",
