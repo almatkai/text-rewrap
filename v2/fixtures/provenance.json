@@ -1,0 +1,67 @@
+{
+  "fixtures/beta/NATIVE_V2_FORMAT.md": {
+    "path": "docs/NATIVE_V2_FORMAT.md",
+    "commit": "fd300e276356587726566026f072563eb9c34cb1",
+    "sha256": "8bf9315ad047326dd6737587ca5491fc35faf5e3f92a2d9c63f596be0c8f7b7a"
+  },
+  "fixtures/beta/extension-v2.schema.json": {
+    "path": "schemas/extension-v2.schema.json",
+    "commit": "fd300e276356587726566026f072563eb9c34cb1",
+    "sha256": "6d5afda1b652605982104bdf16d1547547b98dfd707a7b2969316406c49f32af"
+  },
+  "fixtures/beta/common.rs": {
+    "path": "src-tauri/src/native_core/common.rs",
+    "commit": "fd300e276356587726566026f072563eb9c34cb1",
+    "sha256": "280a0a2f0dd04a8570b320aafc0c3ece0f5de8ddb21c363645567d6a35d84da7"
+  },
+  "fixtures/beta/v2_sdk.rs": {
+    "path": "src-tauri/src/native_core/extensions/v2_sdk.rs",
+    "commit": "fd300e276356587726566026f072563eb9c34cb1",
+    "sha256": "4f987346f863db9a7bd6aa1d5a99e149925dc69a44d629727ccc80a567cd27c2"
+  },
+  "fixtures/beta/v2_runtime.rs": {
+    "path": "src-tauri/src/native_core/extensions/v2_runtime.rs",
+    "commit": "fd300e276356587726566026f072563eb9c34cb1",
+    "sha256": "df96675ba916a3d70b8e0e5da76f7a9422d238cc3fbe3a5a6178fef21662a6a0"
+  },
+  "fixtures/beta/platform.rs": {
+    "path": "src-tauri/src/native_core/platform.rs",
+    "commit": "fd300e276356587726566026f072563eb9c34cb1",
+    "sha256": "75fa7ce4204edbbdb0f4a5410895b32239939b707256c484dc3c4f9de390b5a1"
+  },
+  "fixtures/beta/form-runtime.tsx": {
+    "path": "src/renderer/src/raycast-api/form-runtime.tsx",
+    "commit": "fd300e276356587726566026f072563eb9c34cb1",
+    "sha256": "8568d0ac5be03eea97d0def38067dbbbdce5ae97c36a51024857ef20dce299a6"
+  },
+  "fixtures/beta/index.tsx": {
+    "path": "src/renderer/src/raycast-api/index.tsx",
+    "commit": "fd300e276356587726566026f072563eb9c34cb1",
+    "sha256": "7fc8413a72b92e8f88b0939cd93f91624018fe0765baa1e71b38b86f8cc77a64"
+  },
+  "fixtures/beta/action-runtime.tsx": {
+    "path": "src/renderer/src/raycast-api/action-runtime.tsx",
+    "commit": "fd300e276356587726566026f072563eb9c34cb1",
+    "sha256": "6e7a41e3d1a7ee2028103683f08fb8ed20e4b2e5751e182afe9f8e189522a28b"
+  },
+  "fixtures/beta/action-runtime-overlay.tsx": {
+    "path": "src/renderer/src/raycast-api/action-runtime-overlay.tsx",
+    "commit": "fd300e276356587726566026f072563eb9c34cb1",
+    "sha256": "3eb4a59db0de59460ea8a2c7f4a1f6ec5b514a512f49352bf373db64ed58d604"
+  },
+  "fixtures/beta/extensionRuntime.ts": {
+    "path": "src/shared/extensionRuntime.ts",
+    "commit": "fd300e276356587726566026f072563eb9c34cb1",
+    "sha256": "837b804856baa6b16ebda080920af456268fefcffa7a1c3e2964b95d697ee387"
+  },
+  "fixtures/beta/LICENSE": {
+    "path": "LICENSE",
+    "commit": "fd300e276356587726566026f072563eb9c34cb1",
+    "sha256": "0ed6b1b2760294d4aaaa45be38e166fcc0168e1dd5190423c096fcbe1c94afbf"
+  },
+  "fixtures/beta/clipboard.rs": {
+    "path": "src-tauri/src/native_core/launcher/clipboard.rs",
+    "commit": "fd300e276356587726566026f072563eb9c34cb1",
+    "sha256": "b76fc181e2685d5025a117fc2b53d8c166dc32cdded4651359d42c5bb78a6706"
+  }
+}

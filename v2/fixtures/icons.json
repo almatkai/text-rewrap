@@ -1,0 +1,17 @@
+{
+  "text-rewrap-clipboard.png": {
+    "bytes": 4302,
+    "sha256": "4f16d0cb2f321f33e0251baa5e9f14056675d45185ac88e224e4843f384744d6",
+    "upstream": "https://raw.githubusercontent.com/raycast/extensions/6734d85992290066fd31a7f5bee3cca3d3545a1a/extensions/text-rewrap/assets/text-rewrap-clipboard.png"
+  },
+  "text-rewrap-form.png": {
+    "bytes": 3963,
+    "sha256": "0655272e4e452df6c7b9ce1eb3ef7942ce0c64b3e8b12f457189b7df9aee15b8",
+    "upstream": "https://raw.githubusercontent.com/raycast/extensions/6734d85992290066fd31a7f5bee3cca3d3545a1a/extensions/text-rewrap/assets/text-rewrap-form.png"
+  },
+  "text-rewrap.png": {
+    "bytes": 3194,
+    "sha256": "605539b2bad407e75ad6fad90363bdaf7dddf65a8ac2d1f2ea3865d93869523f",
+    "upstream": "https://raw.githubusercontent.com/raycast/extensions/6734d85992290066fd31a7f5bee3cca3d3545a1a/extensions/text-rewrap/assets/text-rewrap.png"
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "fixtures/original/raycast-env.d.ts": {
+    "commit": "2ae1a73646cf6b773f89cb2ea1a3d9edfa14b5b9",
+    "path": "raycast-env.d.ts",
+    "sha256": "fbe883fc9cca0811de9dc0fb3ac8ae052575d61d6869ef6b5898193f5138a1ac"
+  },
+  "fixtures/original/package.json": {
+    "commit": "2ae1a73646cf6b773f89cb2ea1a3d9edfa14b5b9",
+    "path": "package.json",
+    "sha256": "38776d3cba552394a681e2bbc92111804f4b616f7acbf78f8afc1224c8adc7ec"
+  },
+  "fixtures/original/src/text-rewrap-clipboard.tsx": {
+    "commit": "2ae1a73646cf6b773f89cb2ea1a3d9edfa14b5b9",
+    "path": "src/text-rewrap-clipboard.tsx",
+    "sha256": "74835feb6f19cce683901301d7ed138679069fb1aed19e2452bc6260b0034615"
+  },
+  "fixtures/original/src/text-rewrap-selection.tsx": {
+    "commit": "2ae1a73646cf6b773f89cb2ea1a3d9edfa14b5b9",
+    "path": "src/text-rewrap-selection.tsx",
+    "sha256": "6bd3e2ede3bee7693cd2f7759a07764dffcc6fcdbf579f53b3a7ed21fd598a25"
+  },
+  "fixtures/original/src/text-rewrap-form.tsx": {
+    "commit": "2ae1a73646cf6b773f89cb2ea1a3d9edfa14b5b9",
+    "path": "src/text-rewrap-form.tsx",
+    "sha256": "75ae7b04f7879993df5aa22c330cc7ba1486a01ca4e5cb1fce5992f7b2433f78"
+  },
+  "fixtures/original/src/utils/validation.ts": {
+    "commit": "2ae1a73646cf6b773f89cb2ea1a3d9edfa14b5b9",
+    "path": "src/utils/validation.ts",
+    "sha256": "dc5385e37e89a5773838b49cc64c125c54e9fda11a9c0c0c34edf173bec5d86e"
+  },
+  "fixtures/original/src/utils/rewrapText.test.ts": {
+    "commit": "2ae1a73646cf6b773f89cb2ea1a3d9edfa14b5b9",
+    "path": "src/utils/rewrapText.test.ts",
+    "sha256": "1c3b78b6931db59166f83f40b53845877781fd948081846d961478b3d3bbdf43"
+  },
+  "fixtures/original/src/utils/rewrapText.ts": {
+    "commit": "2ae1a73646cf6b773f89cb2ea1a3d9edfa14b5b9",
+    "path": "src/utils/rewrapText.ts",
+    "sha256": "78cfa54db29c3400deaa8dc161b154cca3116f7508649b2a714d550fffd9a17e"
+  },
+  "fixtures/original/src/utils/validation.test.ts": {
+    "commit": "2ae1a73646cf6b773f89cb2ea1a3d9edfa14b5b9",
+    "path": "src/utils/validation.test.ts",
+    "sha256": "d3b69ef6a6028243ada2f759aab5169552b4dd7df06c3212a204bdaa2dca37d4"
+  },
+  "fixtures/original/src/components/RewrapActions.tsx": {
+    "commit": "2ae1a73646cf6b773f89cb2ea1a3d9edfa14b5b9",
+    "path": "src/components/RewrapActions.tsx",
+    "sha256": "5bb93d6e2cc56d712883c9f6965ec2f7e65d4eefa633831cea63a0a832e8855a"
+  }
+}

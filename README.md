@@ -35,3 +35,5 @@ Great for copying to/from git commits, re-formatting markdowns and more!
 
 - **Width**: Enter a number (e.g., `80`, `100`, `120`) or leave blank for no wrapping
 - **Copy to Clipboard**: If checked, the resulting text will be copied to your clipboard ready for you to use
+
+[Native V2 Rust port and integration guide](v2/README.md).

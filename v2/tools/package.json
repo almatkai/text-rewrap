@@ -1,0 +1,1 @@
+{"private":true,"type":"module","scripts":{"oracle":"node oracle.mjs","renderer":"node renderer.mjs","schema":"node schema.mjs"},"dependencies":{"esbuild":"0.25.12","ajv":"8.17.1","typescript":"5.9.3","tsx":"4.22.4","vitest":"4.1.0"}}
