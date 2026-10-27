@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 2,
+  "id": "com.tezbar.native.text-rewrap",
+  "slug": "text-rewrap",
+  "name": "Text Rewrap",
+  "version": "0.1.0",
+  "description": "Rewraps Text at a given width. Original extension by rembridge (MIT).",
+  "icon": "/extensions/icons/text-rewrap.png",
+  "runtime": "rust",
+  "replaces": [
+    "raycast.text-rewrap"
+  ],
+  "platforms": [
+    "macOS",
+    "Windows"
+  ],
+  "preferences": [
+    {
+      "name": "defaultWidth",
+      "type": "textfield",
+      "required": false,
+      "title": "Default Width",
+      "description": "Default width for text wrapping (leave blank for no wrapping)",
+      "default": "80"
+    },
+    {
+      "name": "defaultCopyToClipboard",
+      "type": "checkbox",
+      "required": false,
+      "label": "Default Copy to Clipboard",
+      "description": "Whether to copy the result to clipboard by default",
+      "default": true
+    }
+  ],
+  "commands": [
+    {
+      "name": "text-rewrap-form",
+      "title": "Text Rewrap from Form",
+      "description": "Rewraps Text provided in the form at the chosen width",
+      "icon": "/extensions/icons/text-rewrap-form.png",
+      "mode": "view",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "runtime": "rust"
+    },
+    {
+      "name": "text-rewrap-clipboard",
+      "title": "Text Rewrap from Clipboard",
+      "description": "Rewraps text from clipboard at the chosen width",
+      "icon": "/extensions/icons/text-rewrap-clipboard.png",
+      "mode": "view",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "runtime": "rust"
+    },
+    {
+      "name": "text-rewrap-selection",
+      "title": "Text Rewrap from Selection",
+      "description": "Rewraps text from currently highlighted selection at the chosen width",
+      "icon": "/extensions/icons/text-rewrap-clipboard.png",
+      "mode": "view",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "runtime": "rust"
+    }
+  ],
+  "verification": [
+    {
+      "platform": "macOS",
+      "state": "not-run",
+      "note": "OS clipboard, selection and focus QA not run."
+    },
+    {
+      "platform": "Windows",
+      "state": "not-run",
+      "note": "OS clipboard, selection and focus QA not run."
+    }
+  ]
+}

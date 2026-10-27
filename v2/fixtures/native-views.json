@@ -1,0 +1,334 @@
+[
+  {
+    "actions": [
+      {
+        "id": "text-rewrap:EPOCH:0:submit",
+        "kind": "submit-form",
+        "title": "Rewrap Text"
+      }
+    ],
+    "mode": "view",
+    "ok": true,
+    "root": {
+      "children": [
+        {
+          "props": {
+            "id": "text:EPOCH",
+            "placeholder": "Enter text to rewrap...",
+            "title": "Text",
+            "value": ""
+          },
+          "type": "Form.TextArea"
+        },
+        {
+          "props": {
+            "error": null,
+            "id": "width:EPOCH",
+            "placeholder": "Leave blank for no wrapping, or enter a number like 80",
+            "title": "Width",
+            "value": "80"
+          },
+          "type": "Form.TextField"
+        },
+        {
+          "props": {
+            "id": "copyResultToClipboard:EPOCH",
+            "label": "Copy result to Clipboard?",
+            "title": "",
+            "value": true
+          },
+          "type": "Form.Checkbox"
+        }
+      ],
+      "props": {},
+      "type": "Form"
+    },
+    "title": "Text Rewrap from Form"
+  },
+  {
+    "actions": [
+      {
+        "id": "text-rewrap:EPOCH:1:submit",
+        "kind": "submit-form",
+        "title": "Rewrap Text"
+      }
+    ],
+    "mode": "view",
+    "ok": true,
+    "root": {
+      "children": [
+        {
+          "props": {
+            "id": "text:EPOCH",
+            "placeholder": "Enter text to rewrap...",
+            "title": "Text",
+            "value": ""
+          },
+          "type": "Form.TextArea"
+        },
+        {
+          "props": {
+            "error": "Please enter a valid number (or leave blank for no text wrapping)",
+            "id": "width:EPOCH",
+            "placeholder": "Leave blank for no wrapping, or enter a number like 80",
+            "title": "Width",
+            "value": "80"
+          },
+          "type": "Form.TextField"
+        },
+        {
+          "props": {
+            "id": "copyResultToClipboard:EPOCH",
+            "label": "Copy result to Clipboard?",
+            "title": "",
+            "value": true
+          },
+          "type": "Form.Checkbox"
+        },
+        {
+          "props": {
+            "text": "Invalid width — Please enter a valid number (or leave blank for no text wrapping)",
+            "title": "Status"
+          },
+          "type": "Form.Description"
+        }
+      ],
+      "props": {},
+      "type": "Form"
+    },
+    "title": "Text Rewrap from Form"
+  },
+  {
+    "actions": [
+      {
+        "id": "text-rewrap:EPOCH:2:submit",
+        "kind": "submit-form",
+        "title": "Rewrap Text"
+      },
+      {
+        "id": "text-rewrap:EPOCH:2:copy",
+        "kind": "copy",
+        "shortcut": {
+          "key": "c",
+          "modifiers": [
+            "cmd"
+          ]
+        },
+        "title": "Copy Rewrapped Text"
+      }
+    ],
+    "mode": "view",
+    "ok": true,
+    "root": {
+      "children": [
+        {
+          "props": {
+            "id": "text:EPOCH",
+            "placeholder": "Enter text to rewrap...",
+            "title": "Text",
+            "value": ""
+          },
+          "type": "Form.TextArea"
+        },
+        {
+          "props": {
+            "error": null,
+            "id": "width:EPOCH",
+            "placeholder": "Leave blank for no wrapping, or enter a number like 80",
+            "title": "Width",
+            "value": "80"
+          },
+          "type": "Form.TextField"
+        },
+        {
+          "props": {
+            "id": "copyResultToClipboard:EPOCH",
+            "label": "Copy result to Clipboard?",
+            "title": "",
+            "value": true
+          },
+          "type": "Form.Checkbox"
+        },
+        {
+          "props": {
+            "text": "a b\nc",
+            "title": "Rewrapped Text"
+          },
+          "type": "Form.Description"
+        },
+        {
+          "props": {
+            "text": "Text rewrapped! — Text re-wrapped at 3 characters",
+            "title": "Status"
+          },
+          "type": "Form.Description"
+        }
+      ],
+      "props": {},
+      "type": "Form"
+    },
+    "title": "Text Rewrap from Form"
+  },
+  {
+    "actions": [
+      {
+        "id": "text-rewrap:EPOCH:0:submit",
+        "kind": "submit-form",
+        "title": "Rewrap Text"
+      }
+    ],
+    "mode": "view",
+    "ok": true,
+    "root": {
+      "children": [
+        {
+          "props": {
+            "error": null,
+            "id": "width:EPOCH",
+            "placeholder": "Leave blank for no wrapping, or enter a number like 80",
+            "title": "Width",
+            "value": "80"
+          },
+          "type": "Form.TextField"
+        },
+        {
+          "props": {
+            "id": "copyResultToClipboard:EPOCH",
+            "label": "Copy result to Clipboard?",
+            "title": "",
+            "value": true
+          },
+          "type": "Form.Checkbox"
+        }
+      ],
+      "props": {},
+      "type": "Form"
+    },
+    "title": "Text Rewrap from Clipboard"
+  },
+  {
+    "actions": [
+      {
+        "id": "text-rewrap:EPOCH:1:submit",
+        "kind": "submit-form",
+        "title": "Rewrap Text"
+      }
+    ],
+    "mode": "view",
+    "ok": true,
+    "root": {
+      "children": [
+        {
+          "props": {
+            "error": "Please enter a valid number (or leave blank for no text wrapping)",
+            "id": "width:EPOCH",
+            "placeholder": "Leave blank for no wrapping, or enter a number like 80",
+            "title": "Width",
+            "value": "80"
+          },
+          "type": "Form.TextField"
+        },
+        {
+          "props": {
+            "id": "copyResultToClipboard:EPOCH",
+            "label": "Copy result to Clipboard?",
+            "title": "",
+            "value": true
+          },
+          "type": "Form.Checkbox"
+        },
+        {
+          "props": {
+            "text": "Invalid width — Please enter a valid number (or leave blank for no text wrapping)",
+            "title": "Status"
+          },
+          "type": "Form.Description"
+        }
+      ],
+      "props": {},
+      "type": "Form"
+    },
+    "title": "Text Rewrap from Clipboard"
+  },
+  {
+    "actions": [
+      {
+        "id": "text-rewrap:EPOCH:0:submit",
+        "kind": "submit-form",
+        "title": "Rewrap Text"
+      }
+    ],
+    "mode": "view",
+    "ok": true,
+    "root": {
+      "children": [
+        {
+          "props": {
+            "error": null,
+            "id": "width:EPOCH",
+            "placeholder": "Leave blank for no wrapping, or enter a number like 80",
+            "title": "Width",
+            "value": "80"
+          },
+          "type": "Form.TextField"
+        },
+        {
+          "props": {
+            "id": "copyResultToClipboard:EPOCH",
+            "label": "Copy result to Clipboard?",
+            "title": "",
+            "value": true
+          },
+          "type": "Form.Checkbox"
+        }
+      ],
+      "props": {},
+      "type": "Form"
+    },
+    "title": "Text Rewrap from Selection"
+  },
+  {
+    "actions": [
+      {
+        "id": "text-rewrap:EPOCH:1:submit",
+        "kind": "submit-form",
+        "title": "Rewrap Text"
+      }
+    ],
+    "mode": "view",
+    "ok": true,
+    "root": {
+      "children": [
+        {
+          "props": {
+            "error": "Please enter a valid number (or leave blank for no text wrapping)",
+            "id": "width:EPOCH",
+            "placeholder": "Leave blank for no wrapping, or enter a number like 80",
+            "title": "Width",
+            "value": "80"
+          },
+          "type": "Form.TextField"
+        },
+        {
+          "props": {
+            "id": "copyResultToClipboard:EPOCH",
+            "label": "Copy result to Clipboard?",
+            "title": "",
+            "value": true
+          },
+          "type": "Form.Checkbox"
+        },
+        {
+          "props": {
+            "text": "Invalid width — Please enter a valid number (or leave blank for no text wrapping)",
+            "title": "Status"
+          },
+          "type": "Form.Description"
+        }
+      ],
+      "props": {},
+      "type": "Form"
+    },
+    "title": "Text Rewrap from Selection"
+  }
+]

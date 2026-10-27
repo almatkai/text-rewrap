@@ -1,0 +1,4 @@
+/target/
+/.qa-v1/
+/.package-check/
+/tools/node_modules/
