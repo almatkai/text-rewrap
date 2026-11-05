@@ -58,6 +58,18 @@ replacing `raycast.text-rewrap`. The original Raycast TypeScript source above
   documented in [v2/README.md](v2/README.md). The V2 notes about compiling into the
   host are historical: this package needs no host source changes.
 
+### Download and install
+
+[Native Rust 0.1.0 release](https://github.com/almatkai/text-rewrap/releases/tag/v0.1.0): [macOS Apple Silicon ZIP](https://github.com/almatkai/text-rewrap/releases/download/v0.1.0/text-rewrap-aarch64-apple-darwin.zip), [Windows x64 ZIP](https://github.com/almatkai/text-rewrap/releases/download/v0.1.0/text-rewrap-x86_64-pc-windows-msvc.zip), and [trusted install reference](https://github.com/almatkai/text-rewrap/releases/download/v0.1.0/extension-release.json).
+
+Download the trusted JSON and your platform ZIP, then import them with:
+
+```sh
+tezbar --extensions-v3-import extension-release.json text-rewrap-<target>.zip
+```
+
+Both native builds, extracted-package protocol checks and Tezbar CLI imports into isolated profiles passed. [Validation and exact hashes](https://github.com/almatkai/text-rewrap/releases/download/v0.1.0/validation.json) record the tested source. Real desktop clipboard, selection and focus QA remains pending. Store discovery requires a Tezbar catalog update.
+
 Build and verify (macOS arm64):
 
 ```sh
