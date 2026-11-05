@@ -1,0 +1,20 @@
+Text Rewrap — standalone Rust Tezbar extension
+SPDX-License-Identifier: MIT AND Apache-2.0
+
+Text Rewrap source and artwork: rembridge, MIT.
+Upstream: https://github.com/raycast/extensions/tree/6734d85992290066fd31a7f5bee3cca3d3545a1a/extensions/text-rewrap
+The original Raycast TypeScript implementation is preserved at the repository root
+(src/, assets/, package.json). Icons in resources/assets are unmodified copies.
+
+Rust engine/adapter (v2/) and process wrapper (rust/): Copyright (c) 2026 almatkai, MIT.
+Full MIT text: licenses/text-rewrap-MIT.txt (and LICENSE).
+
+Compiled-in dependency tezbar-extension-sdk (Apache-2.0), pinned to
+https://github.com/almatkai/tezbar-extension-sdk-rust.git
+rev aaec571673ab64a85a136cf6bd054ef660c4d93c.
+Full text: licenses/tezbar-extension-sdk-Apache-2.0.txt; its NOTICE:
+licenses/tezbar-extension-sdk-NOTICE.txt.
+
+Other third-party Rust crates retain their own licenses as declared in their
+Cargo metadata; Cargo.lock records exact resolved versions.
+No trademark rights are claimed.

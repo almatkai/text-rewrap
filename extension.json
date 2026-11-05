@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 3,
+  "id": "com.tezbar.native.text-rewrap",
+  "slug": "text-rewrap",
+  "name": "Text Rewrap",
+  "version": "0.1.0",
+  "description": "Rewraps Text at a given width. Original extension by rembridge (MIT).",
+  "author": "rembridge",
+  "icon": "resources/assets/text-rewrap.png",
+  "runtime": "rust",
+  "replaces": [
+    "raycast.text-rewrap"
+  ],
+  "platforms": [
+    "macOS",
+    "Windows"
+  ],
+  "preferences": [
+    {
+      "name": "defaultWidth",
+      "type": "textfield",
+      "required": false,
+      "title": "Default Width",
+      "description": "Default width for text wrapping (leave blank for no wrapping)",
+      "default": "80"
+    },
+    {
+      "name": "defaultCopyToClipboard",
+      "type": "checkbox",
+      "required": false,
+      "label": "Default Copy to Clipboard",
+      "description": "Whether to copy the result to clipboard by default",
+      "default": true
+    }
+  ],
+  "commands": [
+    {
+      "name": "text-rewrap-form",
+      "title": "Text Rewrap from Form",
+      "description": "Rewraps Text provided in the form at the chosen width",
+      "icon": "resources/assets/text-rewrap-form.png",
+      "mode": "view",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "runtime": "rust",
+      "concurrency": "serialize",
+      "refreshMs": null
+    },
+    {
+      "name": "text-rewrap-clipboard",
+      "title": "Text Rewrap from Clipboard",
+      "description": "Rewraps text from clipboard at the chosen width",
+      "icon": "resources/assets/text-rewrap-clipboard.png",
+      "mode": "view",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "runtime": "rust",
+      "concurrency": "serialize",
+      "refreshMs": null
+    },
+    {
+      "name": "text-rewrap-selection",
+      "title": "Text Rewrap from Selection",
+      "description": "Rewraps text from currently highlighted selection at the chosen width",
+      "icon": "resources/assets/text-rewrap-clipboard.png",
+      "mode": "view",
+      "platforms": [
+        "macOS",
+        "Windows"
+      ],
+      "runtime": "rust",
+      "concurrency": "serialize",
+      "refreshMs": null
+    }
+  ],
+  "verification": [
+    {
+      "platform": "macOS",
+      "state": "not-run",
+      "note": "Offline protocol/package smoke only; OS clipboard, selection and focus QA not run."
+    },
+    {
+      "platform": "Windows",
+      "state": "not-run",
+      "note": "Not built or tested on Windows yet."
+    }
+  ],
+  "execution": "process",
+  "protocolVersion": 1,
+  "repository": "https://github.com/almatkai/text-rewrap",
+  "artifacts": {},
+  "capabilities": [
+    "host.clipboard.read",
+    "host.clipboard.write",
+    "host.selection.read"
+  ],
+  "files": {}
+}
