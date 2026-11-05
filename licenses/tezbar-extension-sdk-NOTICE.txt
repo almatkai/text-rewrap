@@ -1,4 +1,3 @@
---- tezbar-extension-sdk NOTICE (rev aaec571673ab64a85a136cf6bd054ef660c4d93c) ---
 Tezbar Rust extension SDK
 Copyright 2026 Almat. Apache-2.0.
 View/URL/storage helpers adapted from Tezbar commit

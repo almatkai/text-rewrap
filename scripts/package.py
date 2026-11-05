@@ -4,7 +4,7 @@
 Layout: extension.json, bin/tezbar-<slug>[.exe], resources/**, licenses/**,
 LICENSE, NOTICE. `files` inventories every member except extension.json.
 """
-import argparse, hashlib, json, re, shutil, stat, subprocess, tempfile, zipfile
+import argparse, hashlib, json, re, shutil, stat, subprocess, sys, tempfile, zipfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -34,6 +34,8 @@ def check_sdk(allow=False):
 
 def build(target, binary, output, allow=False):
     check_sdk(allow)
+    # Fail before creating a ZIP if either target has stale/missing notices.
+    subprocess.run([sys.executable, str(ROOT / "scripts/vendor-licenses.py"), "--check"], cwd=ROOT, check=True)
     windows = TARGETS[target]
     manifest = json.loads((ROOT / 'extension.json').read_text())
     slug = manifest['slug']

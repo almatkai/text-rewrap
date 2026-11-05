@@ -6,7 +6,7 @@
 //! two host-facing modules that adapter imports, backed by the independent SDK:
 //! `native_core::common::CoreContext` maps the adapter's three legacy channels to
 //! narrowly granted typed `host.*` reverse RPCs; `v2_sdk` provides view helpers.
-use serde_json::Value;
+use serde_json::{json, Value};
 use tezbar_extension_sdk::{BoxFuture, Extension, ExtensionContext};
 
 pub const EXTENSION_ID: &str = "com.tezbar.native.text-rewrap";
@@ -94,7 +94,66 @@ impl Extension for TextRewrap {
     ) -> BoxFuture<'a, tezbar_extension_sdk::CoreResult> {
         Box::pin(async move {
             let core = native_core::common::CoreContext::new(ctx.clone());
-            adapter::handle(&core, command, operation, payload, state).await
+            let mut payload = payload.clone();
+            // PreferenceSetup and retained legacy preferences can encode checkboxes
+            // as strings. Normalize only the recognized values; v2 owns defaults.
+            if let Some(value) = payload.pointer_mut("/preferences/defaultCopyToClipboard") {
+                match value.as_str() {
+                    Some("false") => *value = json!(false),
+                    Some("true") => *value = json!(true),
+                    _ => {}
+                }
+            }
+            let mut result = adapter::handle(&core, command, operation, &payload, state).await?;
+            // The current invoke-action consumer requires a complete view. Keep
+            // protocol-level unchanged out of that renderer path.
+            if operation == "extension:invoke-action" && result["mode"] == "unchanged" {
+                result = adapter::handle(
+                    &core,
+                    command,
+                    "extension:refresh-session",
+                    &json!({}),
+                    state,
+                )
+                .await?;
+            }
+            adapt_view(&mut result, state, operation == "extension:invoke-action");
+            Ok(result)
         })
+    }
+}
+
+/// Translate the frozen v2 view into surfaces the current launcher consumes.
+/// The engine and session state (including retry output) stay owned by v2.
+fn adapt_view(result: &mut Value, state: &Value, action: bool) {
+    if let Some(fields) = result
+        .pointer_mut("/root/children")
+        .and_then(Value::as_array_mut)
+    {
+        for field in fields {
+            if field["type"] == "Form.Description" && field["props"]["title"] == "Rewrapped Text" {
+                *field = json!({
+                    "type": "Form.TextArea",
+                    "props": {
+                        "id": format!("output:{}:{}", state["epoch"], state["revision"]),
+                        "title": "Rewrapped Text",
+                        "value": state["output"],
+                        "info": "Generated preview. Copy Rewrapped Text copies the stored result."
+                    }
+                });
+            }
+        }
+    }
+    // In-form descriptions do not suppress the launcher's optimistic Copy
+    // fallback. Emit the feedback as a supported toast effect on every action.
+    if action {
+        if let Some(feedback) = state["feedback"].as_str() {
+            let style = if feedback.starts_with("Text rewrapped") {
+                "success"
+            } else {
+                "failure"
+            };
+            result["effects"] = json!([{"kind":"toast", "style":style, "title":feedback}]);
+        }
     }
 }

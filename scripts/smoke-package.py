@@ -30,7 +30,7 @@ def form_values(node, values):
     return values
 
 
-def smoke(path):
+def smoke(path, host_root=None):
     with tempfile.TemporaryDirectory() as temp, zipfile.ZipFile(path) as archive:
         root = Path(temp) / 'package'
         root.mkdir()
@@ -105,7 +105,7 @@ def smoke(path):
         try:
             hello = receive()
             assert hello['type'] == 'hello' and hello['id'] == manifest['id'] and hello['version'] == manifest['version'] and hello['protocol'] == 1
-            request('initialize', {'protocol': 1, 'extensionId': manifest['id'], 'platform': 'Windows' if os.name == 'nt' else 'macOS', 'packageDir': str(root), 'dataDir': str(Path(temp) / 'data'), 'tempDir': str(Path(temp) / 'temp'), 'grantedCapabilities': grants, 'reason': 'command', 'migrationPaths': {}})
+            request('initialize', {'protocol': 1, 'extensionId': manifest['id'], 'platform': 'x86_64-pc-windows-msvc' if os.name == 'nt' else 'aarch64-apple-darwin', 'packageDir': str(root), 'dataDir': str(Path(temp) / 'data'), 'tempDir': str(Path(temp) / 'temp'), 'grantedCapabilities': grants, 'reason': 'command', 'migrationPaths': {}})
             exercised = []
             for command in manifest['commands']:
                 if command.get('mode') != 'view' or command['runtime'] != 'rust':
@@ -130,6 +130,9 @@ def smoke(path):
                 process.wait(timeout=5)
             process.stdin.close()
             process.stdout.close()
+        if host_root:
+            subprocess.run(['node', str(Path(__file__).with_name('renderer-contract.cjs').resolve()),
+                            str(host_root.resolve()), str(binary.resolve())], cwd=root, check=True, timeout=45)
         print(slug, 'ZIP inventory + protocol-info/hello/initialize + open/submit/stale-reject/refresh/dispose for',
               ', '.join(exercised), '+ shutdown passed; stub reverse RPCs:', ', '.join(reverse) or 'none', '(offline, no installation)')
 
@@ -137,5 +140,6 @@ def smoke(path):
 if __name__ == '__main__':
     p = argparse.ArgumentParser()
     p.add_argument('archive', type=Path)
+    p.add_argument('--host-root', type=Path, help='Read-only current host checkout for extracted-binary renderer regressions')
     a = p.parse_args()
-    smoke(a.archive)
+    smoke(a.archive, a.host_root)

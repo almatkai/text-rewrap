@@ -47,7 +47,7 @@ impl Host {
         let init = host
             .call(
                 "initialize",
-                json!({"protocol":1,"extensionId":ID,"platform":"macOS",
+                json!({"protocol":1,"extensionId":ID,"platform":"aarch64-apple-darwin",
                     "packageDir":dir,"dataDir":dir,"tempDir":dir,
                     "grantedCapabilities":grants,"reason":"command","migrationPaths":{}}),
                 &mut |_| panic!("initialize must not call the host"),
@@ -113,7 +113,7 @@ impl Host {
                         let response = match answer {
                             Ok(result) => json!({"type":"response","id":rid,"result":result}),
                             Err(message) => json!({"type":"response","id":rid,
-                                "error":{"code":"host_error","message":message}}),
+                                "error":{"code":"host-error","message":message}}),
                         };
                         self.send(response).await;
                     }
@@ -160,7 +160,14 @@ fn action(view: &Value, title: &str) -> Option<String> {
         .map(|a| a["id"].as_str().unwrap().to_owned())
 }
 fn text(view: &Value, title: &str) -> Option<String> {
-    field(view, title).map(|f| f["props"]["text"].as_str().unwrap().to_owned())
+    field(view, title).map(|f| {
+        let key = if f["type"] == "Form.TextArea" {
+            "value"
+        } else {
+            "text"
+        };
+        f["props"][key].as_str().unwrap().to_owned()
+    })
 }
 fn submit(view: &Value, values: Value) -> Value {
     json!({"actionId":action(view,"Rewrap Text").unwrap(),"formValues":values})
@@ -494,4 +501,105 @@ fn narrow_host_mapping() {
     );
     assert!(host_method("shell:open", &[json!("https://x")]).is_err());
     assert!(host_method("clipboard:write", &[json!(1)]).is_err());
+}
+
+#[tokio::test]
+async fn saved_checkbox_encodings_are_respected_for_every_command() {
+    let mut host = Host::start(GRANTS).await;
+    for command in [
+        "text-rewrap-form",
+        "text-rewrap-clipboard",
+        "text-rewrap-selection",
+    ] {
+        for (encoded, expected) in [
+            (json!("false"), false),
+            (json!(false), false),
+            (json!("true"), true),
+            (json!(true), true),
+            (json!(null), true),
+            (json!("invalid"), true),
+        ] {
+            let view = host
+                .call(
+                    "session.open",
+                    json!({
+                        "sessionId":"prefs", "commandName":command,
+                        "preferences":{"defaultCopyToClipboard":encoded}, "argumentValues":{}
+                    }),
+                    &mut no_host,
+                )
+                .await
+                .unwrap();
+            assert_eq!(
+                field(&view, "").unwrap()["props"]["value"],
+                expected,
+                "{command} {encoded}"
+            );
+            let mut values = json!({field_id(&view,"Width"):"5", field_id(&view,""):expected});
+            if command == "text-rewrap-form" {
+                values[field_id(&view, "Text")] = json!("one two three\n\nfour five");
+            }
+            host.calls.clear();
+            let result = host.call("session.call", json!({"sessionId":"prefs", "operation":"extension:invoke-action", "payload":submit(&view, values)}), &mut |f| {
+                Some(Ok(match f["method"].as_str().unwrap() {
+                    "host.clipboard.read" | "host.selection.read" => json!("one two three\n\nfour five"),
+                    "host.clipboard.write" => json!({"ok":true}),
+                    m => panic!("unexpected host method {m}"),
+                }))
+            }).await.unwrap();
+            let output = field(&result, "Rewrapped Text").unwrap();
+            assert_eq!(output["type"], "Form.TextArea");
+            assert_eq!(output["props"]["value"], "one\ntwo\nthree\n\nfour\nfive");
+            assert_eq!(
+                host.calls
+                    .iter()
+                    .filter(|f| f["method"] == "host.clipboard.write")
+                    .count(),
+                usize::from(expected)
+            );
+            assert_eq!(result["effects"][0]["style"], "success");
+            host.call(
+                "session.dispose",
+                json!({"sessionId":"prefs"}),
+                &mut no_host,
+            )
+            .await
+            .unwrap();
+        }
+    }
+    host.shutdown().await;
+}
+
+#[tokio::test]
+async fn failed_explicit_copy_emits_failure_and_keeps_stored_output_for_retry() {
+    let mut host = Host::start(GRANTS).await;
+    let view = host.call("session.open", json!({"sessionId":"copy", "commandName":"text-rewrap-form", "preferences":{"defaultCopyToClipboard":"false"}, "argumentValues":{}}), &mut no_host).await.unwrap();
+    let result = host.call("session.call", json!({"sessionId":"copy", "operation":"extension:invoke-action", "payload":submit(&view, json!({
+        field_id(&view,"Text"):"one two three\n\nfour five", field_id(&view,"Width"):"5", field_id(&view,""):false
+    }))}), &mut no_host).await.unwrap();
+    let copy = action(&result, "Copy Rewrapped Text").unwrap();
+    let failed = host.call("session.call", json!({"sessionId":"copy", "operation":"extension:invoke-action", "payload":{"actionId":copy}}), &mut |f| {
+        assert_eq!(f["method"], "host.clipboard.write");
+        assert_eq!(f["params"]["text"], "one\ntwo\nthree\n\nfour\nfive");
+        Some(Err("OS clipboard write denied".into()))
+    }).await.unwrap();
+    assert_eq!(failed["mode"], "view");
+    assert_eq!(failed["effects"][0]["kind"], "toast");
+    assert_eq!(failed["effects"][0]["style"], "failure");
+    assert!(failed["effects"][0]["title"]
+        .as_str()
+        .unwrap()
+        .starts_with("Unable to copy"));
+    assert_eq!(
+        text(&failed, "Rewrapped Text"),
+        text(&result, "Rewrapped Text")
+    );
+    assert_eq!(action(&failed, "Copy Rewrapped Text").unwrap(), copy);
+    let retry = host.call("session.call", json!({"sessionId":"copy", "operation":"extension:invoke-action", "payload":{"actionId":copy}}), &mut |f| {
+        assert_eq!(f["method"], "host.clipboard.write");
+        assert_eq!(f["params"]["text"], "one\ntwo\nthree\n\nfour\nfive");
+        Some(Ok(json!({"ok":true})))
+    }).await.unwrap();
+    assert_eq!(retry["effects"][0]["style"], "success");
+    host.shutdown().await;
 }
