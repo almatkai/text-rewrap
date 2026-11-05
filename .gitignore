@@ -7,3 +7,6 @@ Thumbs.db
 
 .tezbar*
 
+
+/target/
+/dist/
